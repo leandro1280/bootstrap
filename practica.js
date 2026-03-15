@@ -36,3 +36,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Accordion Toggle Logic (FAQ)
+function toggleAccordion(element) {
+  const item = element.parentElement;
+  
+  // Close other open items
+  const allItems = document.querySelectorAll('.accordion-item');
+  allItems.forEach((otherItem) => {
+    if (otherItem !== item && otherItem.classList.contains('active')) {
+      otherItem.classList.remove('active');
+      const innerContent = otherItem.querySelector('.accordion-content');
+      if (innerContent) {
+        innerContent.style.maxHeight = '0';
+      }
+    }
+  });
+
+  // Toggle current item
+  const isActive = item.classList.contains('active');
+  const innerContent = item.querySelector('.accordion-content');
+  
+  if (isActive) {
+      item.classList.remove('active');
+      if (innerContent) innerContent.style.maxHeight = '0';
+  } else {
+      item.classList.add('active');
+      if (innerContent) innerContent.style.maxHeight = innerContent.scrollHeight + 'px';
+  }
+}
