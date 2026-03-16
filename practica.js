@@ -28,12 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    const handleScroll = () => {
+        if (window.scrollY > 20) {
             navbar.classList.add('nav-scrolled');
         } else {
             navbar.classList.remove('nav-scrolled');
         }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    // Refresh AOS on load and after short interval for mobile stability
+    window.addEventListener('load', () => {
+        AOS.refresh();
+        setTimeout(() => AOS.refresh(), 500);
     });
 });
 
