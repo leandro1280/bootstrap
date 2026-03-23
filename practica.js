@@ -42,7 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Refresh AOS on load and after short interval for mobile stability
     window.addEventListener('load', () => {
         AOS.refresh();
-        setTimeout(() => AOS.refresh(), 500);
+        setTimeout(() => {
+            AOS.refresh();
+            // Force WhatsApp button visibility just in case
+            const waBtn = document.getElementById('whatsapp-btn');
+            if (waBtn) {
+                waBtn.style.opacity = '1';
+                waBtn.style.visibility = 'visible';
+                waBtn.style.display = 'flex';
+            }
+        }, 500);
     });
 });
 
@@ -74,3 +83,12 @@ function toggleAccordion(element) {
       if (innerContent) innerContent.style.maxHeight = innerContent.scrollHeight + 'px';
   }
 }
+
+
+let suma = 0;
+for (let i = 1; i <= 10; i++) {
+if (i % 2 === 0) {
+suma = suma + i;
+}
+}
+console.log(suma);
