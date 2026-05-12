@@ -43,6 +43,11 @@
   <!-- Preload LCP Image -->
   <link rel="preload" href="logo.png" as="image">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="logo.png">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -696,11 +701,39 @@
         </a>
       </div>
 
-      <div class="w-full border-t border-white/5 pt-8 text-center flex flex-col items-center">
-        <p class="text-xs text-gray-600 tracking-wider">
+      <div class="w-full border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-xs text-gray-600 tracking-wider text-center md:text-left">
           &copy; <span id="year"></span> <a href="mailto:rvrestudiojuridico74@gmail.com"
             class="hover:text-gold-400 transition-colors">RVR Estudio Jurídico</a>. Todos los derechos reservados.
         </p>
+
+        <div
+          class="flex items-center gap-4 group cursor-pointer py-4 px-6 rounded-2xl bg-white/5 border border-white/5 hover:border-gold-500/30 transition-all duration-500">
+          <div class="relative">
+            <div class="absolute inset-0 bg-gold-500/20 blur-lg rounded-full group-hover:bg-gold-500/40 transition-all">
+            </div>
+            <div
+              class="relative w-12 h-12 flex items-center justify-center bg-dark-950 border border-gold-500/40 rounded-xl overflow-hidden">
+              <svg viewBox="0 0 24 24" class="w-7 h-7 text-gold-400" fill="none" stroke="currentColor"
+                stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <div class="absolute inset-0 bg-gradient-to-tr from-gold-500/10 to-transparent"></div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-white font-serif text-lg tracking-wider leading-none"> Desarrollado por: Espinosa<span
+                class="text-gold-400">Labs</span></span>
+            <div class="flex items-center gap-2 mt-1.5">
+              <span class="h-1 w-1 rounded-full bg-gold-500"></span>
+              <span class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-medium">Digital Solutions</span>
+              <span class="text-gray-700 mx-1">|</span>
+              <a href="https://wa.me/2213640662"
+                class="text-[10px] text-gold-500/80 hover:text-gold-400 transition-colors font-bold tracking-widest">2213640662</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
