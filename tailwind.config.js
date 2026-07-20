@@ -6,20 +6,22 @@ module.exports = {
       colors: {
           dark: {
               500: '#2A2A2A',
-              800: '#141414',
+              700: '#181818',
+              800: '#111111',
               900: '#0A0A0A',
-              950: '#050505',
+              950: '#080808',
           },
           gold: {
-              300: '#EBD483', // light glow
-              400: '#D4AF37', // metallic base
-              500: '#C59E30',
+              200: '#F5E6C8',
+              300: '#EBD483',
+              400: '#C8A84E',
+              500: '#B8952F',
               600: '#9A7A22',
           }
       },
       fontFamily: {
-          sans: ['Montserrat', 'sans-serif'],
-          serif: ['Cinzel', 'serif'],
+          sans: ['DM Sans', 'sans-serif'],
+          serif: ['Playfair Display', 'serif'],
       }
     },
   },

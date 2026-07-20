@@ -1,10 +1,10 @@
 // Initialize Animate On Scroll (AOS)
 document.addEventListener('DOMContentLoaded', () => {
     AOS.init({
-        once: true, // Whether animation should happen only once - while scrolling down
-        offset: 50, // Offset (in px) from the original trigger point
-        duration: 800, // Values from 0 to 3000, with step 50ms
-        easing: 'ease-out-cubic', // Default easing for AOS animations
+        once: true,
+        offset: 50,
+        duration: 700,
+        easing: 'ease-out-cubic',
     });
 
     // Set Current Year in Footer
@@ -37,14 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
 
-    // Refresh AOS on load and after short interval for mobile stability
+    // Refresh AOS on load
     window.addEventListener('load', () => {
         AOS.refresh();
         setTimeout(() => {
             AOS.refresh();
-            // Force WhatsApp button visibility just in case
             const waBtn = document.getElementById('whatsapp-btn');
             if (waBtn) {
                 waBtn.style.opacity = '1';
@@ -68,27 +67,27 @@ function toggleAccordion(element) {
       if (innerContent) {
         innerContent.style.maxHeight = '0';
       }
+      const btn = otherItem.querySelector('button');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      const svg = otherItem.querySelector('button svg');
+      if (svg) svg.classList.remove('rotate-180');
     }
   });
 
   // Toggle current item
   const isActive = item.classList.contains('active');
   const innerContent = item.querySelector('.accordion-content');
+  const svg = element.querySelector('svg');
   
   if (isActive) {
       item.classList.remove('active');
       if (innerContent) innerContent.style.maxHeight = '0';
+      element.setAttribute('aria-expanded', 'false');
+      if (svg) svg.classList.remove('rotate-180');
   } else {
       item.classList.add('active');
       if (innerContent) innerContent.style.maxHeight = innerContent.scrollHeight + 'px';
+      element.setAttribute('aria-expanded', 'true');
+      if (svg) svg.classList.add('rotate-180');
   }
 }
-
-
-let suma = 0;
-for (let i = 1; i <= 10; i++) {
-if (i % 2 === 0) {
-suma = suma + i;
-}
-}
-console.log(suma);

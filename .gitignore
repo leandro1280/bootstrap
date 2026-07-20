@@ -1,3 +1,7 @@
 tailwindcss.exe
 .DS_Store
 node_modules/
+.agents/
+.gemini/
+*.md
+skills-lock.json
