@@ -52,6 +52,68 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 500);
     });
+
+    // ── Carrusel de Abogadas (transform-based) ─────────────────────────────
+    const track      = document.getElementById('lawyersTrack');
+    const prevBtn    = document.getElementById('prevLawyer');
+    const nextBtn    = document.getElementById('nextLawyer');
+    const indicators = document.querySelectorAll('.indicator-lawyer');
+    let currentIndex = 0;
+
+    if (track && prevBtn && nextBtn) {
+        const totalSlides = track.children.length;
+
+        const goTo = (index) => {
+            currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
+
+            // CSS transform: move track
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // Update tab indicators
+            indicators.forEach((tab, i) => {
+                const active = i === currentIndex;
+                tab.classList.toggle('bg-gold-400/10',  active);
+                tab.classList.toggle('border-gold-400', active);
+                tab.classList.toggle('text-gold-400',   active);
+                tab.classList.toggle('border-white/10', !active);
+                tab.classList.toggle('text-white/30',   !active);
+            });
+
+            // Update arrow visibility
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalSlides - 1;
+        };
+
+        prevBtn.addEventListener('click', () => { goTo(currentIndex - 1); resetAutoPlay(); });
+        nextBtn.addEventListener('click', () => { goTo(currentIndex + 1); resetAutoPlay(); });
+
+        indicators.forEach((tab, i) => {
+            tab.addEventListener('click', () => { goTo(i); resetAutoPlay(); });
+        });
+
+        // ── Auto-play ──────────────────────────────────────────────────────
+        const INTERVAL_MS = 30000;
+        let autoPlay = null;
+
+        const startAutoPlay = () => {
+            stopAutoPlay();
+            autoPlay = setInterval(() => goTo((currentIndex + 1) % totalSlides), INTERVAL_MS);
+        };
+        const stopAutoPlay  = () => { if (autoPlay) { clearInterval(autoPlay); autoPlay = null; } };
+        const resetAutoPlay = () => { stopAutoPlay(); startAutoPlay(); };
+
+        // Pause on hover/touch
+        track.parentElement.addEventListener('mouseenter', stopAutoPlay);
+        track.parentElement.addEventListener('mouseleave', startAutoPlay);
+        track.parentElement.addEventListener('touchstart', stopAutoPlay,  { passive: true });
+        track.parentElement.addEventListener('touchend',   startAutoPlay, { passive: true });
+        // ──────────────────────────────────────────────────────────────────
+
+        // Init
+        goTo(0);
+        startAutoPlay();
+    }
+    // ───────────────────────────────────────────────────────────────────────
 });
 
 // Accordion Toggle Logic (FAQ)
